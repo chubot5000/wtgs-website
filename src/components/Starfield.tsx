@@ -35,7 +35,7 @@ export default function Starfield() {
           radius: Math.random() * 1.2 + 0.3,
           phase: Math.random() * Math.PI * 2,
           speed: 0.3 + Math.random() * 0.7,
-          baseAlpha: 0.3 + Math.random() * 0.5,
+          baseAlpha: 0.15 + Math.random() * 0.35,
           bright: false,
         });
       }
@@ -46,7 +46,7 @@ export default function Starfield() {
           radius: 1.8 + Math.random() * 1.2,
           phase: Math.random() * Math.PI * 2,
           speed: 0.2 + Math.random() * 0.5,
-          baseAlpha: 0.6 + Math.random() * 0.4,
+          baseAlpha: 0.35 + Math.random() * 0.3,
           bright: true,
         });
       }
