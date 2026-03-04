@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
-import { Nunito, Cormorant_Garamond } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const nunito = Nunito({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["800", "900"],
-  variable: "--font-nunito",
+  weight: ["300", "400", "500"],
+  variable: "--font-inter",
   display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["400"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Where the Giants Sleep — A Sleep Podcast for the Waking Mind",
+  title: "Where the Giants Sleep — Drift into the Void",
   description:
-    "Drift into sleep with immersive stories, guided wind-downs, and science-backed techniques. A premium sleep podcast crafted for restless minds.",
+    "Audio landscapes designed for deep rest. Stories from the edge of consciousness, narrated for the weary mind.",
 };
 
 export default function RootLayout({
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${nunito.variable} ${cormorant.variable}`}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body>{children}</body>
     </html>
   );

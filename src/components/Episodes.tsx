@@ -1,74 +1,63 @@
 "use client";
 
+import { useRef, useState } from "react";
+import styles from "./Episodes.module.css";
+
 const episodes = [
-  {
-    num: 1,
-    title: "The Cloud Kingdom",
-    desc: "Chase a lost cloud creature through marshes and moonlit orchards.",
-    duration: "~35 min",
-  },
-  {
-    num: 2,
-    title: "Space Drift",
-    desc: "Float through nebulae on a decommissioned research vessel.",
-    duration: "~35 min",
-  },
+  { num: "042", date: "Oct 12", title: "The Lighthouse at the End of Time", desc: "A solitary keeper watches over a sea of stars, counting the waves as they turn into memories.", duration: "48 min" },
+  { num: "041", date: "Oct 05", title: "Beneath the Velveteen Canopy", desc: "Wandering through a forest where the leaves whisper ancient lullabies and the moss glows soft blue.", duration: "52 min" },
+  { num: "040", date: "Sep 28", title: "Train to the Midnight City", desc: "Rhythmic tracks and rain on the window pane. A journey to a city that only exists when you close your eyes.", duration: "45 min" },
 ];
+
+function Card({ ep }: { ep: (typeof episodes)[0] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [glow, setGlow] = useState({ x: 0, y: 0, active: false });
+
+  const onMove = (e: React.MouseEvent) => {
+    const rect = ref.current!.getBoundingClientRect();
+    setGlow({ x: e.clientX - rect.left, y: e.clientY - rect.top, active: true });
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={styles.card}
+      onMouseMove={onMove}
+      onMouseLeave={() => setGlow((g) => ({ ...g, active: false }))}
+    >
+      {glow.active && (
+        <div
+          className={styles.glowOverlay}
+          style={{
+            background: `radial-gradient(300px circle at ${glow.x}px ${glow.y}px, rgba(93,127,176,0.08), transparent 70%)`,
+          }}
+        />
+      )}
+      <div className={styles.meta}>
+        <span className={styles.number}>No. {ep.num}</span>
+        <span className={styles.date}>{ep.date}</span>
+      </div>
+      <h3 className={styles.epTitle}>{ep.title}</h3>
+      <p className={styles.epDesc}>{ep.desc}</p>
+      <div className={styles.bottom}>
+        <span className={styles.playCircle}>▶</span>
+        <span className={styles.duration}>{ep.duration}</span>
+      </div>
+    </div>
+  );
+}
 
 export default function Episodes() {
   return (
-    <section
-      id="episodes"
-      className="relative z-10 py-24 px-6"
-      style={{ backgroundColor: "#1B2838" }}
-    >
-      <div className="max-w-4xl mx-auto">
-        <h2
-          className="text-3xl md:text-5xl font-black text-moon-glow text-center mb-16"
-          style={{
-            fontFamily: "var(--font-nunito), sans-serif",
-            textShadow: "0 2px 12px rgba(123, 159, 204, 0.2)",
-          }}
-        >
-          Episodes
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {episodes.map((ep) => (
-            <div
-              key={ep.num}
-              className="rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1"
-              style={{
-                backgroundColor: "#1a2536",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 8px 32px rgba(123, 159, 204, 0.15), 0 4px 24px rgba(0,0,0,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 4px 24px rgba(0,0,0,0.3)";
-              }}
-            >
-              <span className="text-sm text-twilight-blue font-bold uppercase tracking-wider">
-                Episode {ep.num}
-              </span>
-              <h3
-                className="text-2xl font-extrabold text-moon-glow mt-2 mb-3"
-                style={{ fontFamily: "var(--font-nunito), sans-serif" }}
-              >
-                {ep.title}
-              </h3>
-              <p
-                className="text-cloud-periwinkle italic leading-relaxed mb-4"
-                style={{ fontFamily: "var(--font-cormorant), serif", fontSize: "1.1rem" }}
-              >
-                {ep.desc}
-              </p>
-              <span className="text-sm text-soft-fog/50">{ep.duration}</span>
-            </div>
-          ))}
-        </div>
+    <section className={styles.section}>
+      <div className={styles.header}>
+        <h2 className={styles.heading}>Recent Dreams</h2>
+        <a href="#" className={styles.archive}>View Archive →</a>
+      </div>
+      <div className={styles.grid}>
+        {episodes.map((ep) => (
+          <Card key={ep.num} ep={ep} />
+        ))}
       </div>
     </section>
   );

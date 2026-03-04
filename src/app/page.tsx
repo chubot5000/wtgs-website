@@ -1,21 +1,23 @@
+import AmbientLayer from "@/components/AmbientLayer";
 import Starfield from "@/components/Starfield";
+import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
 import Episodes from "@/components/Episodes";
-import Tiers from "@/components/Tiers";
+import Subscribe from "@/components/Subscribe";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
+      <AmbientLayer />
       <Starfield />
-      <main>
+      <div className="layout-wrapper">
+        <Nav />
         <Hero />
-        <About />
         <Episodes />
-        <Tiers />
-        <Footer />
-      </main>
+        <Subscribe />
+      </div>
+      <Footer />
     </>
   );
 }

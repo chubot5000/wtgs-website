@@ -1,0 +1,133 @@
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 6rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  background: linear-gradient(180deg, #fff 0%, #aabdd6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  border-radius: 9999px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 20px rgba(93, 127, 176, 0.15);
+}
+
+.playIcon {
+  font-size: 0.7rem;
+}
+
+.moonWrap {
+  position: absolute;
+  bottom: -25vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vh;
+  height: 80vh;
+  z-index: 1;
+}
+
+.atmosphere {
+  position: absolute;
+  top: -10px;
+  left: 10%;
+  right: 10%;
+  height: 20px;
+  background: var(--accent-glow);
+  filter: blur(40px);
+  opacity: 0.3;
+  border-radius: 50%;
+}
+
+.moon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 0%, rgba(30, 35, 50, 1) 0%, rgba(5, 5, 8, 1) 60%);
+  box-shadow:
+    inset 0 20px 60px rgba(93, 127, 176, 0.1),
+    0 -20px 80px rgba(93, 127, 176, 0.15),
+    0 0 100px rgba(0, 0, 0, 0.8);
+}
+
+.scroll {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  z-index: 2;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--text-secondary), transparent);
+}
+
+@media (max-width: 1024px) {
+  .title { font-size: 4rem; }
+}
+
+@media (max-width: 768px) {
+  .title { font-size: 3rem; }
+  .moonWrap {
+    width: 100vw;
+    height: 100vw;
+    bottom: -15vh;
+  }
+}
